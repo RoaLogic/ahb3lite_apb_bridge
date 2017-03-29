@@ -15,4 +15,4 @@ Notes:
 - APB master interface
 
 <h2>Dependencies</h2>
-This release requires the ahb3lite package found here https://github.com/RoaLogic/AMBA/tree/master/AHB/ahb3lite_pkg
+This release requires the ahb3lite package found here https://github.com/RoaLogic/ahb3lite_pkg
