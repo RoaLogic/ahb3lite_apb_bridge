@@ -11,7 +11,7 @@ Notes:
 - APB and AHB datawidths must be multiples of bytes
 
 ## Documentation
-[Datasheet](DATASHEET)
+[Datasheet](DATASHEET.md)
 
 ## Interfaces
 - AHB3-Lite slave interface
