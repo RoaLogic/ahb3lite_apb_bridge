@@ -1,5 +1,10 @@
-Introduction
-============
+---
+Title: AHB-Lite APB4 Bridge
+Category: Product Brief
+Author: Roa Logic
+---
+
+# Introduction
 
 The Roa Logic AHB-Lite APB4 Bridge is a fully parameterized soft IP interconnect bridge between the *AMBA 3 AHB-Lite v1.0* and *AMBA APB v2.0* bus protocols.
 
@@ -7,8 +12,7 @@ The AHB-Lite APB4 Bridge natively supports a *single* peripheral, however *multi
 
 ![APB4 Bridge with Multiple Peripherals<span data-label="fig:apb4-bridge-sys"></span>](assets/img/apb4-bridge-per.png)
 
-Features
---------
+## Features
 
 -   Full support for AMBA 3 AHB-Lite and APB version 2.0 (APB4) protocol
 
@@ -20,11 +24,9 @@ Features
 
 -   Support for separate clock domain per interface with automatic handling of cross-domain timing.
 
-Specifications
-==============
+# Specifications
 
-Functional Description
-----------------------
+## Functional Description
 
 The Roa Logic AHB-Lite APB4 Bridge is a highly configurable, fully parameterized soft IP interconnect bridge between the *AMBA 3 AHB-Lite v1.0* and *AMBA APB v2.0* bus protocols.
 
@@ -42,13 +44,11 @@ Each interface can operate on a separate clock domain and the IP automatically h
 |          2.| The APB4 Interface data width must be less than or equal to the data width of the AHB-Lite interface    |
 |          3.| AHB-Lite and APB4 Interface data widths must be an integer multiple of bytes.                           |
 
-AHB-Lite Interface
-------------------
+## AHB-Lite Interface
 
 An AHB-Lite Bus Master connects to the AHB interface of the AHB-Lite APB4 Bridge. The AHB interface is implemented as a regular AHB-Lite Slave Interface, supporting all signals in the *AMBA 3 AHB-Lite v1.0* protocol specification
 
-APB4 Interface
---------------
+## APB4 Interface
 
 An APB4 Bus Slave connects to the APB interface of the Bridge IP. The APB port is implemented as a regular APB4 Master Interface supporting all signals of the *AMBA APB v2.0* protocol specification. This allows a single APB4 Peripheral to be connected directly to the Interface without further logic requirements.
 
@@ -56,16 +56,13 @@ Multiple peripherals can share the APB4 Interface through appropriate decoding a
 
 ![APB4 Multiplexing Peripherals<span data-label="fig:apb4-bridge-sys"></span>](assets/img/apb4-bridge-sys.png)
 
-Configurations
-==============
+# Configurations
 
-Introduction
-------------
+## Introduction
 
 The Roa Logic AHB-Lite APB4 Bridge is a fully configurable bridge IP to enable AHB-Lite based hosts to communicate with APB4 based peripherals. The core parameters and configuration options are described in this section.
 
-Core Parameters
----------------
+## Core Parameters
 
 | Parameter   |   Type  | Default | Description                       |
 |:------------|:-------:|:-------:|:----------------------------------|
@@ -113,11 +110,9 @@ The minimum and default value of the `SYNC_DEPTH` parameter is 3.
 
 The *AMBA APB v2.0 Protocol* specification limits the widths of both Address (`PADDR_SIZE`) and Data (`PDATA_SIZE`) buses to 32 bits. However the AHB-Lite APB4 Bridge IP Address and Data sizes are *not* similarly constrained – any Address width and any byte-aligned Data width is supported by the IP.
 
-Interfaces
-==========
+# Interfaces
 
-AHB-Lite Interface
-------------------
+## AHB-Lite Interface
 
 The AHB-Lite interface is a regular AHB-Lite slave port. All signals are supported. See the *[AMBA 3 AHB-Lite Specification](https://www.arm.com/products/system-ip/amba-specifications)* for a complete description of the signals.
 
@@ -234,8 +229,7 @@ The `HPROT` signals provide additional information about the bus transfer and ar
 
 `HRESP` is the instruction transfer response and indicates OKAY (‘0’) or ERROR (‘1’).
 
-APB4 (Peripheral) Interface
----------------------------
+## APB4 (Peripheral) Interface
 
 The APB4Interface is a regular APB4 Master Interface. All signals defined in the protocol are supported as described below. See the *AMBA APB Protocol v2.0 Specifications* for a complete description of the signals.
 
@@ -321,8 +315,7 @@ There is one `PSTRB` signal per byte lane of the APB4 write data bus (`PWDATA`).
 
 `PSLVERR` indicates a failed data transfer when asserted (‘1’). As APB4 peripherals are not required to support this signal it must be tied LOW (‘0’) when unused.
 
-Resources
-=========
+# Resources
 
 Below are some example implementations for various platforms. All implementations are push button, no effort has been undertaken to reduce area or improve performance.
 
@@ -332,8 +325,7 @@ Below are some example implementations for various platforms. All implementation
 |          |     |             |        |                   |
 |          |     |             |        |                   |
 
-Resources
-=========
+# Revision History
 
 | Date        | Rev. | Comments        |
 |:------------|:-----|:----------------|
@@ -341,5 +333,3 @@ Resources
 |             |      |                 |
 |             |      |                 |
 |             |      |                 |
-
-
