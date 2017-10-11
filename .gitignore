@@ -1,7 +1,8 @@
-docs/datasheet.aux
-docs/datasheet.log
-docs/datasheet.out
-docs/datasheet.synctex.gz
-docs/datasheet.tdo
-docs/datasheet.tex
-docs/datasheet.toc
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.synctex.gz
+docs/*.tdo
+docs/*.tex
+docs/*.toc
+docs/build
