@@ -25,17 +25,19 @@ width is less than the AHB-Lite data width.
 	\label{fig:apb4-bridge-sig}
 \end{figure}
 
-Each
-interface can operate on a separate clock domain and the IP
+Each interface can operate on a separate clock domain and the IP
 automatically handles all cross clock domain synchronization
 requirements.
 
 \begin{longtable}[]{@{}|rp{12cm}@{}}
-		\textbf{Notes:} & \tabularnewline
-		\endhead
-	  1. & The APB4 Interface clock frequency must be less than or equal to the AHB-Lite interface clock frequency\\
-		2. & The APB4 Interface data width must be less than or equal to the data width of the AHB-Lite interface\\
-		3. & AHB-Lite and APB4 Interface data widths must be an integer multiple of bytes.\\
+	\textbf{Notes:} & \tabularnewline
+	\endhead
+	1. & The APB4 Interface clock frequency must be less than or equal 
+	to the AHB-Lite interface clock frequency\\
+	2. & The APB4 Interface data width must be less than or equal to 
+	the data width of the AHB-Lite interface\\
+	3. & AHB-Lite and APB4 Interface data widths must be an integer 
+	multiple of bytes.\\
 \end{longtable}
 
 	
@@ -62,5 +64,5 @@ an additional APB4 Multiplexer IP to implement this capability.
 	\centering
 	\includegraphics{assets/img/apb4-bridge-sys.png}
 	\caption{APB4 Multiplexing Peripherals}
-	\label{fig:apb4-bridge-sys}
+	\label{fig:apb4-bridge-sys2}
 \end{figure}

@@ -11,18 +11,18 @@ of the signals.
 Port & Size & Direction & Description\tabularnewline
 \midrule
 \endhead
-\texttt{PRESETn} & 1 & Input & Asynchronous active low reset\tabularnewline
-\texttt{PCLK} & 1 & Input & Clock Input\tabularnewline
-\texttt{PSEL} & 1 & Output & Peripheral Select\tabularnewline
-\texttt{PENABLE} & 1 & Output & Peripheral Enable Control\tabularnewline
-\texttt{PPROT} & 3 & Output & Transfer Protection Level\tabularnewline
-\texttt{PWRITE} & 1 & Output & Write Select\tabularnewline
-\texttt{PSTRB} & \texttt{PDATA\_SIZE/8} & Output & Byte Lane Indicator\tabularnewline
-\texttt{PADDR} & \texttt{PADDR\_SIZE} & Output & Address Bus\tabularnewline
-\texttt{PWDATA} & \texttt{PDATA\_SIZE} & Output & Write Data Bus\tabularnewline
-\texttt{PRDATA} & \texttt{PDATA\_SIZE} & Input & Read Data Bus\tabularnewline
-\texttt{PREADY} & 1 & Input & Transfer Ready Input\tabularnewline
-\texttt{PSLVERR} & 1 & Input & Transfer Error Indicator\tabularnewline
+\texttt{PRESETn} & 1                      & Input  & Asynchronous active low reset\tabularnewline
+\texttt{PCLK}    & 1                      & Input  & Clock Input\tabularnewline
+\texttt{PSEL}    & 1                      & Output & Peripheral Select\tabularnewline
+\texttt{PENABLE} & 1                      & Output & Peripheral Enable Control\tabularnewline
+\texttt{PPROT}   & 3                      & Output & Transfer Protection Level\tabularnewline
+\texttt{PWRITE}  & 1                      & Output & Write Select\tabularnewline
+\texttt{PSTRB}   & \texttt{PDATA\_SIZE/8} & Output & Byte Lane Indicator\tabularnewline
+\texttt{PADDR}   & \texttt{PADDR\_SIZE}   & Output & Address Bus\tabularnewline
+\texttt{PWDATA}  & \texttt{PDATA\_SIZE}   & Output & Write Data Bus\tabularnewline
+\texttt{PRDATA}  & \texttt{PDATA\_SIZE}   & Input  & Read Data Bus\tabularnewline
+\texttt{PREADY}  & 1                      & Input  & Transfer Ready Input\tabularnewline
+\texttt{PSLVERR} & 1                      & Input  & Transfer Error Indicator\tabularnewline
 \bottomrule
 \caption{APB4 Peripheral Interface Ports}
 \end{longtable}
@@ -64,7 +64,7 @@ requirement\tabularnewline
 
 \subsection{PENABLE}\label{penable}
 
-The APB4 Bridge asserts PENABLE during the second and
+The APB4 Bridge asserts \texttt{PENABLE} during the second and
 subsequent cycles of an APB4 data transfer.
 
 \subsection{PPROT}\label{pprot}
@@ -78,11 +78,11 @@ Bit\# & Value & Description\tabularnewline
 \midrule
 \endhead
 2 & 1 & Instruction Access\tabularnewline
-& 0 & Data Access\tabularnewline
+  & 0 & Data Access\tabularnewline
 1 & 1 & Non-Secure Access\tabularnewline
-& 0 & Secure Access\tabularnewline
+  & 0 & Secure Access\tabularnewline
 0 & 1 & Privileged Access\tabularnewline
-& 0 & Normal Access\tabularnewline
+  & 0 & Normal Access\tabularnewline
 \bottomrule
 \caption{APB4 Protection Types}
 \end{longtable}

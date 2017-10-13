@@ -3,27 +3,27 @@
 The AHB-Lite interface is a regular AHB-Lite slave port. All signals are
 supported. See the
 \emph{\href{https://www.arm.com/products/system-ip/amba-specifications}{AMBA
-		3 AHB-Lite Specification}} for a complete description of the signals.
+3 AHB-Lite Specification}} for a complete description of the signals.
 
 \begin{longtable}[c]{@{\extracolsep{\fill}}cccl@{}}	
 	\toprule 
 	\textbf{Port} & \textbf{Size} & \textbf{Direction} & \textbf{Description}\\
 	\midrule
 	\endhead 
-	\texttt{HRESETn}   & 1 & Input  & Asynchronous active low reset\\
-	\texttt{HCLK}      & 1 & Input  & Clock Input\\
-	\texttt{HSEL}      & 1 & Input  & Bus Select\\
-	\texttt{HTRANS}    & 2 & Input  & Transfer Type\\
-	\texttt{HADDR}     & \texttt{HADDR\_SIZE} & Input & Address Bus\\
-	\texttt{HWDATA}    & \texttt{HDATA\_SIZE} & Input & Write Data Bus\\
+	\texttt{HRESETn}   & 1                    & Input  & Asynchronous active low reset\\
+	\texttt{HCLK}      & 1                    & Input  & Clock Input\\
+	\texttt{HSEL}      & 1                    & Input  & Bus Select\\
+	\texttt{HTRANS}    & 2                    & Input  & Transfer Type\\
+	\texttt{HADDR}     & \texttt{HADDR\_SIZE} & Input  & Address Bus\\
+	\texttt{HWDATA}    & \texttt{HDATA\_SIZE} & Input  & Write Data Bus\\
 	\texttt{HRDATA}    & \texttt{HDATA\_SIZE} & Output & Read Data Bus\\
-	\texttt{HWRITE}    & 1 & Input  & Write Select\\
-	\texttt{HSIZE}     & 3 & Input  & Transfer Size\\
-	\texttt{HBURST}    & 3 & Input  & Transfer Burst Size\\
-	\texttt{HPROT}     & 4 & Input  & Transfer Protection Level\\
-	\texttt{HREADYOUT} & 1 & Output & Transfer Ready Output\\
-	\texttt{HREADY}    & 1 & Input  & Transfer Ready Input\\
-	\texttt{HRESP}     & 1 & Output & Transfer Response\\
+	\texttt{HWRITE}    & 1                    & Input  & Write Select\\
+	\texttt{HSIZE}     & 3                    & Input  & Transfer Size\\
+	\texttt{HBURST}    & 3                    & Input  & Transfer Burst Size\\
+	\texttt{HPROT}     & 4                    & Input  & Transfer Protection Level\\
+	\texttt{HREADYOUT} & 1                    & Output & Transfer Ready Output\\
+	\texttt{HREADY}    & 1                    & Input  & Transfer Ready Input\\
+	\texttt{HRESP}     & 1                    & Output & Transfer Response\\
 	\bottomrule 	
 	\caption{PLIC Interface Signals}
 	\label{tab:AHBIF}
@@ -144,13 +144,13 @@ transfer and are intended to implement a level of protection.
 	\midrule
 	\endhead 
 	3 & 1 & Cacheable region addressed\\
-	& 0 & Non-cacheable region addressed\\
+	  & 0 & Non-cacheable region addressed\\
 	2 & 1 & Bufferable\\
-	& 0 & Non-bufferable\\
+	  & 0 & Non-bufferable\\
 	1 & 1 & Privileged Access\\
-	& 0 & User Access\\
+	  & 0 & User Access\\
 	0 & 1 & Data Access\\
-	& 0 & Opcode fetch\\
+	  & 0 & Opcode fetch\\
 	\bottomrule 	
 	\caption{HPROT Indicators}
 	\label{tab:HPROT}

@@ -15,6 +15,7 @@ The AHB-Lite APB4 Bridge natively supports a *single* peripheral, however *multi
 ## Documentation
 
 [Datasheet](DATASHEET.md)
+- [PDF Datasheet](docs/anb3lite_apb_bridge_datasheet.pdf)
 
 ## Features
 
