@@ -31,7 +31,7 @@ The AHB-Lite APB4 Bridge natively supports a *single* peripheral, however *multi
 
 ## License
 
-Released under the RoaLogic [Non-Commerical License](/LICENSE.md)
+Released under the RoaLogic [Non-Commercial License](/LICENSE.md)
 
 ## Dependencies
 This release requires the ahb3lite package found here https://github.com/RoaLogic/ahb3lite_pkg
