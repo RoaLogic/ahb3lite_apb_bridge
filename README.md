@@ -1,9 +1,3 @@
----
-Title: AHB-Lite to APB4 Bridge
-Category: Product Brief
-Author: Roa Logic
----
-
 # AHB-Lite APB4 Bridge
 
 The Roa Logic AHB-Lite APB4 Bridge is a fully parameterized soft IP interconnect bridge between the [AMBA 3 AHB-Lite v1.0 ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ihi0024c/index.html)and [AMBA APB v2.0](http://infocenter.arm.com/help/topic/com.arm.doc.ihi0024c/index.html)bus protocols.
