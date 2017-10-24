@@ -1,0 +1,128 @@
+\section{APB4 (Peripheral)
+Interface}\label{apb4-peripheral-interface}
+
+The APB4Interface is a regular APB4 Master Interface. All signals
+defined in the protocol are supported as described below. See the
+\emph{AMBA APB Protocol v2.0 Specifications} for a complete description
+of the signals.
+
+\begin{longtable}[]{@{}lccl@{}}
+\toprule
+Port & Size & Direction & Description\tabularnewline
+\midrule
+\endhead
+\texttt{PRESETn} & 1                      & Input  & Asynchronous active low reset\tabularnewline
+\texttt{PCLK}    & 1                      & Input  & Clock Input\tabularnewline
+\texttt{PSEL}    & 1                      & Output & Peripheral Select\tabularnewline
+\texttt{PENABLE} & 1                      & Output & Peripheral Enable Control\tabularnewline
+\texttt{PPROT}   & 3                      & Output & Transfer Protection Level\tabularnewline
+\texttt{PWRITE}  & 1                      & Output & Write Select\tabularnewline
+\texttt{PSTRB}   & \texttt{PDATA\_SIZE/8} & Output & Byte Lane Indicator\tabularnewline
+\texttt{PADDR}   & \texttt{PADDR\_SIZE}   & Output & Address Bus\tabularnewline
+\texttt{PWDATA}  & \texttt{PDATA\_SIZE}   & Output & Write Data Bus\tabularnewline
+\texttt{PRDATA}  & \texttt{PDATA\_SIZE}   & Input  & Read Data Bus\tabularnewline
+\texttt{PREADY}  & 1                      & Input  & Transfer Ready Input\tabularnewline
+\texttt{PSLVERR} & 1                      & Input  & Transfer Error Indicator\tabularnewline
+\bottomrule
+\caption{APB4 Peripheral Interface Ports}
+\end{longtable}
+
+\subsection{PRESETn}\label{presetn}
+
+When the active low asynchronous \texttt{PRESETn} input is asserted (`0'), the
+APB4 interface is put into its initial reset state.
+
+\subsection{PCLK}\label{pclk}
+
+\texttt{PCLK} is the APB4 interface system clock. All internal logic for the APB4
+interface operates at the rising edge of this system clock and APB4 bus
+timings are related to the rising edge of \texttt{PCLK}.
+
+The frequency of \texttt{PCLK} must be less than or equal to that of the AHB-Lite
+Interface clock \texttt{HCLK}:
+
+\begin{longtable}[]{@{}|rp{12cm}@{}}
+	\textbf{Conditions}: & \\
+	\endhead
+	 & Freq( \texttt{PCLK} ) $\leqslant$ Freq( \texttt{HCLK} )\\
+\end{longtable}	
+
+\subsection{PSEL}\label{psel}
+
+The APB4 Bridge generates \texttt{PSEL}, signaling to an attached peripheral that
+it is selected and a data transfer is pending.
+
+\begin{longtable}[]{@{}|p{2cm}p{12cm}@{}}
+\textbf{Note:} & \\
+\endhead
+& To support multiple APB4 peripherals, individual \texttt{PSEL}
+signals must be generated per peripheral - Roa Logic provides an
+additional \emph{APB4 Multiplexer} IP to support this
+requirement\tabularnewline
+
+\end{longtable}
+
+\subsection{PENABLE}\label{penable}
+
+The APB4 Bridge asserts \texttt{PENABLE} during the second and
+subsequent cycles of an APB4 data transfer.
+
+\subsection{PPROT}\label{pprot}
+
+\texttt{PPROT[2:0]} indicates the protection type of the data transfer, with
+3 levels of protection supported as follows:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Bit\# & Value & Description\tabularnewline
+\midrule
+\endhead
+2 & 1 & Instruction Access\tabularnewline
+  & 0 & Data Access\tabularnewline
+1 & 1 & Non-Secure Access\tabularnewline
+  & 0 & Secure Access\tabularnewline
+0 & 1 & Privileged Access\tabularnewline
+  & 0 & Normal Access\tabularnewline
+\bottomrule
+\caption{APB4 Protection Types}
+\end{longtable}
+
+\subsection{PWRITE}\label{pwrite}
+
+\texttt{PWRITE} indicates a data write access when asserted high (`1') and a read
+data access when de-asserted (`0')
+
+\subsection{PSTRB}\label{pstrb}
+
+There is one \texttt{PSTRB} signal per byte lane of the APB4 write data bus
+(\texttt{PWDATA}). These signals indicate which byte lane to update during a
+write transfer such that \texttt{PSTRB[n]} corresponds to
+\texttt{PWDATA[(8n+7):8n]}.
+
+\subsection{PADDR}\label{paddr}
+
+\texttt{PADDR} is the APB4 address bus. The bus width is defined by the
+\texttt{PADDR\_SIZE} parameter and is driven by the APB4 Bridge core.
+
+\subsection{PWDATA}\label{pwdata}
+
+\texttt{PWDATA} is the APB4 write data bus and is driven by the APB4 Bridge core
+during write cycles, indicated when \texttt{PWRITE} is asserted (`1'). The bus
+width must be byte-aligned and is defined by the \texttt{PDATA\_SIZE} parameter.
+
+\subsection{PRDATA}\label{prdata}
+
+\texttt{PRDATA} is the APB4 read data bus. An attached peripheral drives this bus
+during read cycles, indicated when \texttt{PWRITE} is de-asserted (`0'). The bus
+width must be byte-aligned and is defined by the \texttt{PDATA\_SIZE} parameter.
+
+\subsection{PREADY}\label{pready}
+
+\texttt{PREADY} is driven by the attached peripheral. It is used to extend an
+APB4 transfer.
+
+\subsection{PSLVERR}\label{pslverr}
+
+\texttt{PSLVERR} indicates a failed data transfer when asserted (`1'). As APB4
+peripherals are not required to support this signal it must be tied LOW
+(`0') when unused.
