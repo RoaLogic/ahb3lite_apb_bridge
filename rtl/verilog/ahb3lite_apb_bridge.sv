@@ -424,7 +424,7 @@ module ahb3lite_apb_bridge #(
                  PADDR                <= ahb_haddr[PADDR_SIZE-1:0];
                  PWRITE               <= ahb_hwrite;
                  PWDATA               <= ahb_hwdata >> data_offset(ahb_haddr);
-                 PSTRB                <= ahb_hwrite & pstrb(ahb_hsize,ahb_haddr[PADDR_SIZE-1:0]); //TODO: check/sim
+                 PSTRB                <= ahb_hwrite && pstrb(ahb_hsize,ahb_haddr[PADDR_SIZE-1:0]); //TODO: check/sim
 
                  apb_prdata           <= 'h0;                                   //clear prdata
                  apb_beat_cnt         <= apb_beats(ahb_hsize);
@@ -470,7 +470,7 @@ module ahb3lite_apb_bridge #(
 
                      PADDR  <= PADDR + (1 << ahb_hsize);
                      PWDATA <= ahb_hwdata >> apb_beat_data_offset;
-                     PSTRB  <= ahb_hwrite & pstrb(ahb_hsize,PADDR + (1 << ahb_hsize));
+                     PSTRB  <= ahb_hwrite && pstrb(ahb_hsize,PADDR + (1 << ahb_hsize));
                  end
              end
         endcase
