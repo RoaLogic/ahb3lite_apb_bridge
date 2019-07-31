@@ -1,0 +1,8 @@
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.synctex.gz
+docs/*.tdo
+docs/*.tex
+docs/*.toc
+docs/build
