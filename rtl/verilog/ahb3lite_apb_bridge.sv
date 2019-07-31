@@ -1,38 +1,30 @@
-/////////////////////////////////////////////////////////////////
-//                                                             //
-//    ██████╗  ██████╗  █████╗                                 //
-//    ██╔══██╗██╔═══██╗██╔══██╗                                //
-//    ██████╔╝██║   ██║███████║                                //
-//    ██╔══██╗██║   ██║██╔══██║                                //
-//    ██║  ██║╚██████╔╝██║  ██║                                //
-//    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝                                //
-//          ██╗      ██████╗  ██████╗ ██╗ ██████╗              //
-//          ██║     ██╔═══██╗██╔════╝ ██║██╔════╝              //
-//          ██║     ██║   ██║██║  ███╗██║██║                   //
-//          ██║     ██║   ██║██║   ██║██║██║                   //
-//          ███████╗╚██████╔╝╚██████╔╝██║╚██████╗              //
-//          ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝ ╚═════╝              //
-//                                                             //
-//    Asynchronous AHB3-Lite to APB Bridge                     //
-//                                                             //
-/////////////////////////////////////////////////////////////////
-//                                                             //
-//             Copyright (C) 2014-2017 ROA Logic BV            //
-//             www.roalogic.com                                //
-//                                                             //
-//    Unless specifically agreed in writing, this software is  //
-//  licensed under the RoaLogic Non-Commercial License         //
-//  version-1.0 (the "License"), a copy of which is included   //
-//  with this file or may be found on the RoaLogic website     //
-//  http://www.roalogic.com. You may not use the file except   //
-//  in compliance with the License.                            //
-//                                                             //
-//    THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY        //
-//  EXPRESS OF IMPLIED WARRANTIES OF ANY KIND.                 //
-//  See the License for permissions and limitations under the  //
-//  License.                                                   //
-//                                                             //
-/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+//   ,------.                    ,--.                ,--.          //
+//   |  .--. ' ,---.  ,--,--.    |  |    ,---. ,---. `--' ,---.    //
+//   |  '--'.'| .-. |' ,-.  |    |  |   | .-. | .-. |,--.| .--'    //
+//   |  |\  \ ' '-' '\ '-'  |    |  '--.' '-' ' '-' ||  |\ `--.    //
+//   `--' '--' `---'  `--`--'    `-----' `---' `-   /`--' `---'    //
+//                                             `---'               //
+//    Asynchronous AHB3-Lite to APB Bridge                         //
+//                                                                 //
+/////////////////////////////////////////////////////////////////////
+//                                                                 //
+//             Copyright (C) 2014-2019 ROA Logic BV                //
+//             www.roalogic.com                                    //
+//                                                                 //
+//     Unless specifically agreed in writing, this software is     //
+//   licensed under the RoaLogic Non-Commercial License            //
+//   version-1.0 (the "License"), a copy of which is included      //
+//   with this file or may be found on the RoaLogic website        //
+//   http://www.roalogic.com. You may not use the file except      //
+//   in compliance with the License.                               //
+//                                                                 //
+//     THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY           //
+//   EXPRESS OF IMPLIED WARRANTIES OF ANY KIND.                    //
+//   See the License for permissions and limitations under the     //
+//   License.                                                      //
+//                                                                 //
+/////////////////////////////////////////////////////////////////////
 
 module ahb3lite_apb_bridge #(
   parameter HADDR_SIZE = 32,
@@ -424,7 +416,7 @@ module ahb3lite_apb_bridge #(
                  PADDR                <= ahb_haddr[PADDR_SIZE-1:0];
                  PWRITE               <= ahb_hwrite;
                  PWDATA               <= ahb_hwdata >> data_offset(ahb_haddr);
-                 PSTRB                <= ahb_hwrite & pstrb(ahb_hsize,ahb_haddr[PADDR_SIZE-1:0]); //TODO: check/sim
+                 PSTRB                <= {PDATA_SIZE/8{ahb_hwrite}} & pstrb(ahb_hsize,ahb_haddr[PADDR_SIZE-1:0]);
 
                  apb_prdata           <= 'h0;                                   //clear prdata
                  apb_beat_cnt         <= apb_beats(ahb_hsize);
@@ -470,7 +462,7 @@ module ahb3lite_apb_bridge #(
 
                      PADDR  <= PADDR + (1 << ahb_hsize);
                      PWDATA <= ahb_hwdata >> apb_beat_data_offset;
-                     PSTRB  <= ahb_hwrite & pstrb(ahb_hsize,PADDR + (1 << ahb_hsize));
+                     PSTRB  <= {PDATA_SIZE/8{ahb_hwrite}} & pstrb(ahb_hsize,PADDR + (1 << ahb_hsize));
                  end
              end
         endcase
