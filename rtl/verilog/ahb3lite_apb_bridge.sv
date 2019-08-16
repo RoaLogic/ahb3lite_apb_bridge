@@ -9,7 +9,7 @@
 //                                                                 //
 /////////////////////////////////////////////////////////////////////
 //                                                                 //
-//             Copyright (C) 2014-2019 ROA Logic BV                //
+//             Copyright (C) 2017-2019 ROA Logic BV                //
 //             www.roalogic.com                                    //
 //                                                                 //
 //     Unless specifically agreed in writing, this software is     //
@@ -25,6 +25,41 @@
 //   License.                                                      //
 //                                                                 //
 /////////////////////////////////////////////////////////////////////
+
+// +FHDR -  Semiconductor Reuse Standard File Header Section  -------
+// FILE NAME      : ahb3lite_apb_bridge.sv
+// DEPARTMENT     :
+// AUTHOR         : rherveille
+// AUTHOR'S EMAIL :
+// ------------------------------------------------------------------
+// RELEASE HISTORY
+// VERSION DATE        AUTHOR      DESCRIPTION
+// 1.0     2017-03-29  rherveille  initial release
+// 1.1     2019-08-01  rherveille  Fixed PSTRB ahb_hwrite size
+// ------------------------------------------------------------------
+// KEYWORDS : AMBA AHB AHB3-Lite APB Bridge
+// ------------------------------------------------------------------
+// PURPOSE  : Asynchronous AHB3Lite to APB4 Bridge
+// ------------------------------------------------------------------
+// PARAMETERS
+//  PARAM NAME        RANGE    DESCRIPTION              DEFAULT UNITS
+//  HADDR_SIZE        1+       AHB Address bus size     32      bits
+//  HDATA_SIZE        1+       AHB Data bus size        32      bits
+//  PADDR_SIZE        1+       APB Address bus size     10      bits
+//  PDATA_SIZE        1+       APB Data bus size        8       bits
+//  SYNC_DEPTH        1+       CDC sync stages          3       stages
+// ------------------------------------------------------------------
+// REUSE ISSUES 
+//   Reset Strategy      : external asynchronous active low; HRESETn
+//   Clock Domains       : HCLK, rising edge
+//   Critical Timing     : 
+//   Test Features       : na
+//   Asynchronous I/F    : no
+//   Scan Methodology    : na
+//   Instantiations      : none
+//   Synthesizable (y/n) : Yes
+//   Other               :                                         
+// -FHDR-------------------------------------------------------------
 
 module ahb3lite_apb_bridge #(
   parameter HADDR_SIZE = 32,
