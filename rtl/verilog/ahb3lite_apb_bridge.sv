@@ -269,14 +269,14 @@ module ahb3lite_apb_bridge #(
 
     //get number of active lanes for a 1024bit databus (max width) for this HSIZE
     case (hsize)
-       HSIZE_B1024: full_pstrb = 'hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff; 
-       HSIZE_B512 : full_pstrb = 'hffff_ffff_ffff_ffff;
-       HSIZE_B256 : full_pstrb = 'hffff_ffff;
-       HSIZE_B128 : full_pstrb = 'hffff;
-       HSIZE_DWORD: full_pstrb = 'hff;
-       HSIZE_WORD : full_pstrb = 'hf;
-       HSIZE_HWORD: full_pstrb = 'h3;
-       default    : full_pstrb = 'h1;
+       HSIZE_B1024: full_pstrb = {128{1'b1}; 
+       HSIZE_B512 : full_pstrb = { 64{1'b1}};
+       HSIZE_B256 : full_pstrb = { 32{1'b1}};
+       HSIZE_B128 : full_pstrb = { 16{1'b1}};
+       HSIZE_DWORD: full_pstrb = {  8{1'b1}};
+       HSIZE_WORD : full_pstrb = {  4{1'b1}};
+       HSIZE_HWORD: full_pstrb = {  2{1'b1}};
+       default    : full_pstrb = {  1{1'b1}};
     endcase
 
     //generate masked address
@@ -495,7 +495,7 @@ module ahb3lite_apb_bridge #(
                       */
                      apb_fsm       <= ST_APB_SETUP;
 
-                     PADDR  <= PADDR + (1 << ahb_hsize);
+                     PADDR  <= PADDR + (1 << PDATASIZE/8);
                      PWDATA <= ahb_hwdata >> apb_beat_data_offset;
                      PSTRB  <= {PDATA_SIZE/8{ahb_hwrite}} & pstrb(ahb_hsize,PADDR + (1 << ahb_hsize));
                  end
