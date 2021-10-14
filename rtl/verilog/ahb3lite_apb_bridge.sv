@@ -269,7 +269,7 @@ module ahb3lite_apb_bridge #(
 
     //get number of active lanes for a 1024bit databus (max width) for this HSIZE
     case (hsize)
-       HSIZE_B1024: full_pstrb = {128{1'b1}; 
+       HSIZE_B1024: full_pstrb = {128{1'b1}}; 
        HSIZE_B512 : full_pstrb = { 64{1'b1}};
        HSIZE_B256 : full_pstrb = { 32{1'b1}};
        HSIZE_B128 : full_pstrb = { 16{1'b1}};
