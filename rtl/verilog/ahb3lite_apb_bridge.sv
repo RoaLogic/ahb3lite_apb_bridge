@@ -495,7 +495,7 @@ module ahb3lite_apb_bridge #(
                       */
                      apb_fsm       <= ST_APB_SETUP;
 
-                     PADDR  <= PADDR + (1 << PDATASIZE/8);
+                     PADDR  <= PADDR + (1 << PDATA_SIZE/8);
                      PWDATA <= ahb_hwdata >> apb_beat_data_offset;
                      PSTRB  <= {PDATA_SIZE/8{ahb_hwrite}} & pstrb(ahb_hsize,PADDR + (1 << ahb_hsize));
                  end
