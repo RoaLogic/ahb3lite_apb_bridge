@@ -302,6 +302,7 @@ module ahb3lite_apb_bridge #(
 
         HREADYOUT  <= 1'b1;
         HRESP      <= HRESP_OKAY;
+	HRDATA     <=  'hx;
 
         ahb_treq   <= 1'b0;
         ahb_haddr  <=  'h0;
@@ -423,16 +424,20 @@ module ahb3lite_apb_bridge #(
   always @(posedge PCLK,negedge PRESETn)
     if (!PRESETn)
     begin
-        apb_fsm        <= ST_APB_IDLE;
-        apb_tack       <= 1'b0;
+        apb_fsm              <= ST_APB_IDLE;
+        apb_tack             <= 1'b0;
+        apb_prdata           <=  'hx;
+        apb_beat_cnt         <=  'hx;
+	apb_beat_data_offset <=  'hx;
+	apb_pslverr          <= 1'bx;
 
-        PSEL    <= 1'b0;
-        PPROT   <= 1'b0;
-        PADDR   <= 'h0;
-        PWRITE  <= 1'b0;
-        PENABLE <= 1'b0;
-        PWDATA  <= 'h0;
-        PSTRB   <= 'h0;
+        PSEL                 <= 1'b0;
+        PPROT                <= 1'b0;
+        PADDR                <=  'h0;
+        PWRITE               <= 1'b0;
+        PENABLE              <= 1'b0;
+        PWDATA               <=  'h0;
+        PSTRB                <=  'h0;
     end
     else
     begin
