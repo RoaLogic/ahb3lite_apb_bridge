@@ -61,7 +61,9 @@
 //   Other               :                                         
 // -FHDR-------------------------------------------------------------
 
-module ahb3lite_apb_bridge #(
+module ahb3lite_apb_bridge
+import ahb3lite_pkg::*;
+#(
   parameter HADDR_SIZE = 32,
   parameter HDATA_SIZE = 32,
   parameter PADDR_SIZE = 10,
@@ -104,8 +106,6 @@ module ahb3lite_apb_bridge #(
   //
   // Constants
   //
-  import ahb3lite_pkg::*;
-
   typedef enum logic [1:0] {ST_AHB_IDLE=2'b00, ST_AHB_TRANSFER=2'b01, ST_AHB_ERROR=2'b10} ahb_fsm_states;
   typedef enum logic [1:0] {ST_APB_IDLE=2'b00, ST_APB_SETUP=2'b01, ST_APB_TRANSFER=2'b10} apb_fsm_states;
 
